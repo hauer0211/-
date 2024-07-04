@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>服のパターン生成</title>
+</head>
+<body>
+    <h1>服のパターン生成</h1>
+    <form id="patternForm">
+        <label for="patternType">パターンタイプ:</label>
+        <select id="patternType" name="patternType">
+            <option value="shirt">シャツ</option>
+            <option value="dress">ドレス</option>
+            <option value="pants">パンツ</option>
+        </select><br><br>
+
+        <label for="size">サイズ:</label>
+        <input type="text" id="size" name="size"><br><br>
+
+        <button type="submit">生成</button>
+    </form>
+    <div id="result" style="margin-top: 20px;">
+        <h2>生成されたパターンと服</h2>
+        <img id="patternImage" src="" alt="パターン画像" style="display: none;">
+        <img id="clothingImage" src="" alt="服画像" style="display: none;">
+    </div>
+
+    <script>
+        document.getElementById('patternForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const response = await fetch('/generate_pattern', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            if (result.error) {
+                document.getElementById('result').innerText = result.error;
+            } else {
+                const patternImgElement = document.getElementById('patternImage');
+                patternImgElement.src = 'data:image/png;base64,' + result.pattern_image;
+                patternImgElement.alt = result.pattern;
+                patternImgElement.style.display = 'block';
+
+                const clothingImgElement = document.getElementById('clothingImage');
+                clothingImgElement.src = 'data:image/png;base64,' + result.clothing_image;
+                clothingImgElement.alt = result.pattern;
+                clothingImgElement.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

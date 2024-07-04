@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hauer</title>
+</head>
+<body background="/static/1c8336a627d24cac400698cf49c10f2c.jpg" id="moji">
+    <h1>オンワード</h1>
+    <h2>服一覧</h2>
+    <div class="box">
+    <table border="1" id="border">
+        <tr>
+            <th>ブランド</th>
+            <th>ジャンル</th>
+            <th>値段</th>
+            <th>リンク</th>
+        </tr>
+        {% for yougaku in yougakus %}
+            <tr>
+                <td>{{yougaku.title}}</td>
+                <td>{{yougaku.price}}</td>
+                <td>{{yougaku.arrival_day}}</td>
+                <form>
+                <td><input type="button" onclick="location.href='{{yougaku.link}}'" id="link" value="リンク"></td>
+                </form>
+            </tr>
+        {% endfor %}   
+    </table>
+    </div>
+    <form>
+    <input type="button" onclick="history.back()" value="戻る" id="modoru">
+    </form>
+    <form>
+    <input type="button" onclick="location.href='Logingpage.html'" value="ログイン" id="login">
+    </form>
+    <form>
+        <input type="button" onclick="location.href='hougaku.html'" value="邦楽一覧" id="hougaku">
+    </form>
+    <form>
+        <input type="buttom" onclick="location.href='k_pop.html'" value=" kpop一覧" id="kpop">
+    </form>
+    <form>
+        <input type="buttom" onclick="location.href='yougaku.html'" value="  洋楽一覧" id="yougaku">
+    </form>
+    <form>
+        <input type="buttom" onclick="location.href='JAZZ.html'" value="   JAZZ" id="Jazz">
+    </form>
+    <form action="{{ url_for('views.generate_pattern_route') }}" method="POST">
+        <input type="submit">
+        <input type="button" onclick="location.href='generate_pattern.html'" value="Close">
+    </form>
+    <form>
+        <input type="text" id="textspace">
+    </form>
+</body>
+</html>
+<style>
+#moji {
+    color: aliceblue;
+    background-repeat: no-repeat;
+}
+
+.box {
+  width: 600px;
+  height: 430px;
+  border: 1px solid #000;
+  overflow-x: scroll;
+}
+#border {
+    width: 590px;
+    height: 400px;
+}
+*{
+    margin:0px;padding:0px;
+}
+#hougaku {
+    height: 30px;
+    width: 70px;
+    position: relative;
+    left: 700px;
+    top: -300px;
+    border: 1px solid #333333;
+    border-radius:30px;
+}
+#kpop {
+    height: 24px;
+    width: 54px;
+    position: relative;
+    left: 770px;
+    top: -329px;
+    border-radius:30px;
+    border: 1px solid #333;
+}
+#modoru {
+    height: 30px;
+    width: 70px;
+    border-radius:30px;
+    border: 1px solid #333;
+}
+#login {
+    height: 30px;
+    width: 70px;
+    border-radius:30px;
+    border: 1px solid #333;
+}
+#yougaku {
+    padding: 3px 5px;
+    height: 22px;
+    width: 55px;
+    border: 1px solid #333;
+    position: relative;
+    left: 635px;
+    top: -359px;
+    border-radius:30px;
+}
+#Jazz {
+    height: 25px;
+    width: 50px;
+    position: relative;
+    left: 581px;
+    top: -389px;
+    border-radius:30px;
+    border: 1px solid #333;
+
+}
+#textspace {
+    height: 80px;
+    width: 200px;
+}
+#link {
+    height: 25px;
+    width: 60px;
+}
+#close {
+    height: 25px;
+    width: 50px;
+    position: relative;
+    left: 600px;
+    top: -400px;
+    border-radius:30px;
+    border: 1px solid #333;
+
+}
+</style>

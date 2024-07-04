@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邦楽</title>
+</head>
+<body background="/static/1c8336a627d24cac400698cf49c10f2c.jpg" id="moji">
+    <h1>music</h1>
+    <h2>邦楽一覧</h2>
+    <table border="1">
+        <tr>
+            <th>曲名</th>
+            <th>アーティスト</th>
+            <th>リリース日</th>
+        </tr>
+        {% for hougaku in hougakus %}
+        <tr>
+            <td>{{hougaku.songname}}</td>
+            <td>{{hougaku.artist}}</td>
+            <td>{{hougaku.arrival_day}}</td>
+            <td><input type="button" onclick="location.href='{{hougaku.link}}'" value="リンク" id="link"></td>
+        </tr>
+        {% endfor %}
+    </table>
+<form>
+    <input type="button" onclick="history.back()" value="戻る">
+</form>
+    
+</body>
+</html>
+
+<style>
+    #moji{
+        color: aliceblue;
+    }
+</style>
